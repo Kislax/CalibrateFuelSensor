@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo-name">Тарировочный лист</h1>
+
+    <nav class="navigate">
+        <div class="file">
+        <button class="btn btn-create">Создать</button>
+        <button class="btn btn-create"  onclick="save()">Сохранить</button>
+        <button class="btn btn-create">Сохранить как</button>
+        </div>
+        <div class="edit">
+            <button class="btn btn-undo">назад</button>
+            <button class="btn btn-forward">вперед</button>
+        </div>
+    </nav>
+    </header>
+
+    <div class="workspace">
+        <div class="form">
+            <h1 class="form-name">Форма</h1>
+            <label class="label label-fuel"  for="fuelData">ЛИТРЫ
+                <input name="fuel" type="text"  id="fuelData" class="input input-fuel">
+            </label>
+            <br>
+            <hr>
+            <label class="label label-value"  for="valueData">ЗНАЧЕНИЕ
+                <input name="value" type="text" min="1"  id="valueData"  class="input input-value">
+            </label>
+            <br>
+            <div class="form-btn-block">
+                <button class="btn btn-finish">Завершить</button>
+                <button class="btn btn-next" onclick="next()">Дальше</button>
+            </div>
+        </div>
+
+        <div class="table-block">
+            <div class="table-title"><h1>Результат тарировки</h1></div>
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <td>№</td>
+                        <td>Литры</td>
+                        <td>Значения</td>
+                    </tr>
+                </thead>
+
+                <tbody class="tbody">
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+<noscript>Пожалуйста включите использование Javascript в браузере</noscript>
+<script type="text/javascript" src="script.js"></script>
+</html>

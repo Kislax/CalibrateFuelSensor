@@ -1,0 +1,178 @@
+/* reset CSS */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
+
+/* Style CSS */
+*{
+    box-sizing: border-box;
+}
+
+h1{
+    font-size: 5vh;
+}
+
+header{
+    text-align: center;
+}
+.logo-name{
+    font-size: 5vh;
+    position: absolute;
+    left: 40%;
+}
+.navigate{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.1vh solid black;
+    margin-bottom: 3vh;
+}
+.file{
+    padding: 1vh;
+}
+.edit{
+    padding: 1vh;
+}
+.btn{
+    font-size: 1.5vh;
+    padding: 1vh;
+    margin: 0.5vh;
+    border-radius: 1vh;
+    background: white;
+    border: 0.05vh solid grey;
+}
+.btn:hover{
+    cursor: pointer;
+    box-shadow: 0.05vh 0.1vh 0.5vh 0.1vh slategray;
+}
+
+.workspace{
+    display: flex;
+    justify-content: space-around;
+}
+.form{
+    width: 30%;
+    height: 40%;
+    box-shadow: 0.05vh 0.05vh 0.3vh 0.1vh slategray;
+    border-radius: 0.5vh;
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    padding: 2vh;
+}
+.form-name{
+    font-size: 5vh;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+.form-btn-block{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2vh;
+}
+.btn-finish{
+    background: #940409;
+    color: white;
+    border: 0;
+}
+.btn-next{
+    background: #05a665;
+    color: white;
+    border: 0;
+    width: 50%;
+    padding-top: 1vh;
+}
+.label{
+    font-size: 3vh;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2vh;
+    align-items: center;
+}
+.input{
+    margin-left: 1vh;
+    padding: 1vh;
+    border-radius: 1vh;
+    font-size: 3vh;
+    width: 40%;
+    -moz-appearance: textfield;
+}
+.input::-webkit-inner-spin-button {
+    display: none;
+}
+.table-block{
+    width: 40%;
+    box-shadow: 0.05vh 0.05vh 0.3vh 0.1vh slategray;
+    border-radius: 0.5vh;
+    padding: 2vh;
+}
+.table{
+    width: 100%;
+    border: 1px solid #eee;
+    table-layout: fixed;
+    margin-bottom: 20px;
+}
+.table-title{
+    margin-bottom: 2vh;
+    text-align: center;
+}
+.table th {
+    font-weight: bold;
+    padding: 5px;
+    background: #efefef;
+    border: 1px solid #dddddd;
+}
+.table td{
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    text-align: left;
+}
+.table tbody tr:nth-child(odd){
+    background: #fff;
+}
+.table tbody tr:nth-child(even){
+    background: #F7F7F7;
+}
