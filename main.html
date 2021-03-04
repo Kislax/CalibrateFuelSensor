@@ -9,32 +9,34 @@
     <title>Document</title>
 </head>
 <body>
-    <header class="header">
-        <h1 class="logo-name">Тарировочный лист</h1>
+<header class="header">
+    <h1 class="logo-name">Тарировочный лист</h1>
 
     <nav class="navigate">
         <div class="file">
-        <button class="btn btn-create">Создать</button>
-        <button class="btn btn-create"  onclick="save()">Сохранить</button>
-        <button class="btn btn-create">Сохранить как</button>
+            <button class="btn btn-open" onclick="openFile()">Открыть</button>
+            <button class="btn btn-create" onclick="createFile()">Создать</button>
+            <button class="btn btn-create" onclick="save()">Сохранить</button>
+            <button class="btn btn-create">Сохранить как</button>
         </div>
         <div class="edit">
             <button class="btn btn-undo">назад</button>
             <button class="btn btn-forward">вперед</button>
         </div>
     </nav>
-    </header>
+</header>
 
-    <div class="workspace">
+<div class="workspace">
+
         <div class="form">
             <h1 class="form-name">Форма</h1>
-            <label class="label label-fuel"  for="fuelData">ЛИТРЫ
-                <input name="fuel" type="text"  id="fuelData" class="input input-fuel">
+            <label class="label label-value" for="valueData">ЗНАЧЕНИЕ ДУТ
+                <input name="value" type="number" min="1" id="valueData" class="input input-value">
             </label>
             <br>
             <hr>
-            <label class="label label-value"  for="valueData">ЗНАЧЕНИЕ
-                <input name="value" type="text" min="1"  id="valueData"  class="input input-value">
+            <label class="label label-fuel" for="fuelData">ЛИТРЫ
+                <input name="fuel" type="number" id="fuelData" class="input input-fuel">
             </label>
             <br>
             <div class="form-btn-block">
@@ -48,11 +50,11 @@
             <table class="table">
 
                 <thead>
-                    <tr>
-                        <td>№</td>
-                        <td>Литры</td>
-                        <td>Значения</td>
-                    </tr>
+                <tr>
+                    <td>№</td>
+                    <td>Значения ДУТ</td>
+                    <td>Литры</td>
+                </tr>
                 </thead>
 
                 <tbody class="tbody">
@@ -61,7 +63,23 @@
 
             </table>
         </div>
+    <div class="createFileBlock">
+        <h2> Создание файла</h2>
+        <label class="label" for="carNumber">Номер машины
+            <input name="value" type="text" placeholder="X111XX" id="carNumber" class="input">
+        </label>
+        <br>
+        <hr>
+        <label class="label" for="FuelTank">Бак
+            <input name="fuel" type="number" id="FuelTank" value="1" class="input">
+        </label>
+        <br>
+        <button class="btn btn-next" onclick="next()">Дальше</button>
     </div>
+</div>
+
+
+
 </body>
 <noscript>Пожалуйста включите использование Javascript в браузере</noscript>
 <script type="text/javascript" src="script.js"></script>
