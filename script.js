@@ -3,6 +3,7 @@ let valueData = document.getElementById("valueData"),
     tbody = document.getElementsByClassName("tbody")[0],
     workspace = document.getElementsByClassName("workspace"),
     createModal =document.getElementsByClassName("createFileBlock"),
+    prevValue =document.getElementsByClassName("prevValue"),
     storage = window.localStorage,
     table = null,
     row = {},
@@ -11,6 +12,8 @@ file = {
     csv:"data:text/csv;charset=utf-8,",
     arr:[]
 };
+
+
 //TODO export csv file
 function save(){
     let encodedUri = encodeURI(file.csv);
@@ -23,6 +26,14 @@ function save(){
     downloadLink.click();
     downloadLink.remove();
 }
+
+//TODO convert arrows to csv file
+function convertToCSV(arr){
+
+}
+
+
+//TODO release to switch inputs for push "enter"
 function next(){
     row = {
         valueData:valueData.value,
@@ -38,13 +49,55 @@ function next(){
 
     valueData.value = "";
     fuelData.value = "";
-    createTable(file.arr);
+    addRowInTable(file.arr);
 }
-//TODO add class modal-window
+
+
+function openCreateModal(){
+    workspace[0].classList.toggle("dimmer");
+    createModal[0].classList.toggle("active");
+}
+
+function closeCreateModal(){
+    workspace[0].classList.toggle("dimmer");
+    createModal[0].classList.toggle("active");
+}
+
+//TODO create new obj to localStorage, used data from input
 function createFile(){
-    workspace.classList.add("dimmer");
-    createModal.classList.add("active");
+
 }
+
+//TODO open view list last files from localStorage
+function openModalLastFile(){
+
+}
+
+//TODO closed view list last files from localStorage
+function closedModalLastFile(){
+
+}
+
+//TODO open last file from list
+function openLastFile(){
+
+        console.log(storage.getItem("tar"))
+        file.arr = JSON.parse(storage.getItem("tar"))
+        addRowInTable(file.arr)
+}
+
+//TODO edit rows value
+function editRow(rowNumber){
+
+}
+
+//TODO save row in local storage
+function saveEditingRow(){
+
+}
+
+
+//TODO used this function to create SCV file
 
 // function nixt() {
 //      // accept data as CSV
@@ -58,13 +111,8 @@ function createFile(){
 // }
 
 
-function openFile(){
-    console.log(storage.getItem("tar"))
-    file.arr = JSON.parse(storage.getItem("tar"))
-    createTable(file.arr)
-}
 
-function createTable(arr) {
+function addRowInTable(arr) {
     let number = 1;
     tbody.innerHTML = '';
     for(let i = 0; i < arr.length; i++){
@@ -85,10 +133,18 @@ function createTable(arr) {
         newText = document.createTextNode("tupe");
         newCell.appendChild(newText);
         number++
+
         }
+
+    //TODO fix prev value sensor
+    prevValue.innerHTML = `Последнее значение ДУТ: ${arr[i].valueData},  Последний залив: ${arr[i].fuelData}, Последний сумма литров: symm`
     valueData.value = "";
     fuelData.value = "";
 }
+
+
+
+
 // function makeTable ( csv ) {
 //         tbody.removeChild("");
 //         csv = csv.split("data:text/csv;charset=utf-8,")

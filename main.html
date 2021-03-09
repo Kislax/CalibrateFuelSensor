@@ -14,10 +14,9 @@
 
     <nav class="navigate">
         <div class="file">
-            <button class="btn btn-open" onclick="openFile()">Открыть</button>
-            <button class="btn btn-create" onclick="createFile()">Создать</button>
+            <button class="btn btn-open" onclick="openLastFile()">Открыть</button>
+            <button class="btn btn-create" onclick="openCreateModal()">Создать</button>
             <button class="btn btn-create" onclick="save()">Сохранить</button>
-            <button class="btn btn-create">Сохранить как</button>
         </div>
         <div class="edit">
             <button class="btn btn-undo">назад</button>
@@ -50,7 +49,7 @@
     </div>
     <div class="form">
         <h1 class="form-name">Форма</h1>
-        <label for="prevValue"></label>
+        <label class="prevValue" ></label>
         <label class="label label-value" for="valueData">ЗНАЧЕНИЕ ДУТ
             <input name="value" type="number" min="1" id="valueData" class="input input-value">
         </label>
@@ -79,7 +78,8 @@
             <input name="StartSensorValue" type="number" id="StartSensorValue" value="1" class="input">
         </label>
         <br>
-        <button class="btn btn-next" onclick="">Дальше</button>
+        <button class="btn btn-finish" onclick="closeCreateModal()">Выйти</button>
+        <button class="btn btn-next" onclick="">Создать</button>
     </div>
 </div>
 
