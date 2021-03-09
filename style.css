@@ -92,6 +92,7 @@ header{
 .workspace{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 .form{
     width: 40%;

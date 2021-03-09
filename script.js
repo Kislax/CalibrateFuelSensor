@@ -73,10 +73,16 @@ function createTable(arr) {
         let newText = document.createTextNode(number);
         newCell.appendChild(newText);
         newCell = newRow.insertCell(1);
-        newText = document.createTextNode(arr[i].valueData);
+        newText = document.createTextNode( new Date().toLocaleTimeString());
         newCell.appendChild(newText);
         newCell = newRow.insertCell(2);
+        newText = document.createTextNode(arr[i].valueData);
+        newCell.appendChild(newText);
+        newCell = newRow.insertCell(3);
         newText = document.createTextNode(arr[i].fuelData);
+        newCell.appendChild(newText);
+        newCell = newRow.insertCell(4);
+        newText = document.createTextNode("tupe");
         newCell.appendChild(newText);
         number++
         }

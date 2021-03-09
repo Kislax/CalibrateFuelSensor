@@ -28,41 +28,43 @@
 
 <div class="workspace">
 
-        <div class="form">
-            <h1 class="form-name">Форма</h1>
-            <label class="label label-value" for="valueData">ЗНАЧЕНИЕ ДУТ
-                <input name="value" type="number" min="1" id="valueData" class="input input-value">
-            </label>
-            <br>
-            <hr>
-            <label class="label label-fuel" for="fuelData">ЛИТРЫ
-                <input name="fuel" type="number" id="fuelData" class="input input-fuel">
-            </label>
-            <br>
-            <div class="form-btn-block">
-                <button class="btn btn-finish">Завершить</button>
-                <button class="btn btn-next" onclick="next()">Дальше</button>
-            </div>
+    <div class="table-block">
+        <div class="table-title"><h1>Результат тарировки</h1></div>
+        <table class="table">
+
+            <thead>
+            <tr>
+                <td>№</td>
+                <td>Время</td>
+                <td>Значения ДУТ</td>
+                <td>Литры</td>
+                <td>Всего литров</td>
+            </tr>
+            </thead>
+
+            <tbody class="tbody">
+
+            </tbody>
+
+        </table>
+    </div>
+    <div class="form">
+        <h1 class="form-name">Форма</h1>
+        <label for="prevValue"></label>
+        <label class="label label-value" for="valueData">ЗНАЧЕНИЕ ДУТ
+            <input name="value" type="number" min="1" id="valueData" class="input input-value">
+        </label>
+        <br>
+        <hr>
+        <label class="label label-fuel" for="fuelData">ЛИТРЫ
+            <input name="fuel" type="number" id="fuelData" class="input input-fuel">
+        </label>
+        <br>
+        <div class="form-btn-block">
+            <button class="btn btn-finish">Завершить</button>
+            <button class="btn btn-next" onclick="next()">Дальше</button>
         </div>
-
-        <div class="table-block">
-            <div class="table-title"><h1>Результат тарировки</h1></div>
-            <table class="table">
-
-                <thead>
-                <tr>
-                    <td>№</td>
-                    <td>Значения ДУТ</td>
-                    <td>Литры</td>
-                </tr>
-                </thead>
-
-                <tbody class="tbody">
-
-                </tbody>
-
-            </table>
-        </div>
+    </div>
     <div class="createFileBlock">
         <h2> Создание файла</h2>
         <label class="label" for="carNumber">Номер машины
@@ -71,10 +73,13 @@
         <br>
         <hr>
         <label class="label" for="FuelTank">Бак
-            <input name="fuel" type="number" id="FuelTank" value="1" class="input">
+            <input name="FuelTank" type="number" id="FuelTank" value="1" class="input">
+        </label>
+        <label class="label" for="StartSensorValue">Начальное значение ДУТ
+            <input name="StartSensorValue" type="number" id="StartSensorValue" value="1" class="input">
         </label>
         <br>
-        <button class="btn btn-next" onclick="next()">Дальше</button>
+        <button class="btn btn-next" onclick="">Дальше</button>
     </div>
 </div>
 
