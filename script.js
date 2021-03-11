@@ -7,6 +7,7 @@ let valueData = document.getElementById("valueData"),
     prevHeader = document.getElementsByClassName("prevDiv-header"),
     prevSensor = document.getElementsByClassName("prevDiv-sensor"),
     prevFuel = document.getElementsByClassName("prevDiv-fuel"),
+    prevTotalFuel = document.getElementsByClassName("prevDiv-totalFuel"),
     prevData = document.getElementsByClassName("prevDiv-data"),
     storage = window.localStorage,
     table = null,
@@ -36,13 +37,19 @@ function convertToCSV(arr){
 
 }
 
+function clearAll(){
+    Storage.clear();
+}
 
 //TODO release to switch inputs for push "enter"
 function next(){
+    const len = file.arr.length
     row = {
+        number:len+1,
         valueTime:new Date().toLocaleTimeString(),
         valueData:valueData.value,
         fuelData:fuelData.value,
+        totalFuelData: file.arr.length ? file.arr.reduce((a, b) => Number(a) + Number(b.fuelData), 0) : Number(fuelData.value)
     }
     if (!file.arr){
         file.arr = [row]
@@ -86,7 +93,6 @@ function closedModalLastFile(){
 //TODO open last file from list
 function openLastFile(){
 
-        console.log(storage.getItem("tar"))
         file.arr = JSON.parse(storage.getItem("tar"))
         addRowInTable(file.arr)
 }
@@ -135,11 +141,12 @@ function addRowInTable(arr) {
         newText = document.createTextNode( arr[i].fuelData );
         newCell.appendChild(newText);
         newCell = newRow.insertCell(4);
-        newText = document.createTextNode("tupe");
+        newText = document.createTextNode(arr[i].totalFuelData);
         newCell.appendChild(newText);
         number++
-        prevSensor[0].innerHTML = "Значение ДУТ: " + arr[i].valueData;
-        prevFuel[0].innerHTML = "Значение топлива: " + arr[i].fuelData ;
+        prevSensor[0].innerHTML = "ДУТ: " + arr[i].valueData;
+        prevFuel[0].innerHTML = "Литров: " + arr[i].fuelData ;
+        prevTotalFuel[0].innerHTML = "Всего литров: " + arr[i].totalFuelData ;
         }
 
     //TODO fix prev value sensor
