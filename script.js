@@ -2,8 +2,12 @@ let valueData = document.getElementById("valueData"),
     fuelData = document.getElementById("fuelData"),
     tbody = document.getElementsByClassName("tbody")[0],
     workspace = document.getElementsByClassName("workspace"),
-    createModal =document.getElementsByClassName("createFileBlock"),
-    prevValue =document.getElementsByClassName("prevValue"),
+    createModal = document.getElementsByClassName("createFileBlock"),
+    prevDiv = document.getElementsByClassName("prevDiv"),
+    prevHeader = document.getElementsByClassName("prevDiv-header"),
+    prevSensor = document.getElementsByClassName("prevDiv-sensor"),
+    prevFuel = document.getElementsByClassName("prevDiv-fuel"),
+    prevData = document.getElementsByClassName("prevDiv-data"),
     storage = window.localStorage,
     table = null,
     row = {},
@@ -36,6 +40,7 @@ function convertToCSV(arr){
 //TODO release to switch inputs for push "enter"
 function next(){
     row = {
+        valueTime:new Date().toLocaleTimeString(),
         valueData:valueData.value,
         fuelData:fuelData.value,
     }
@@ -118,31 +123,34 @@ function addRowInTable(arr) {
     for(let i = 0; i < arr.length; i++){
         let newRow = tbody.insertRow(i)
         let newCell = newRow.insertCell(0);
-        let newText = document.createTextNode(number);
+        let newText = document.createTextNode( number );
         newCell.appendChild(newText);
         newCell = newRow.insertCell(1);
-        newText = document.createTextNode( new Date().toLocaleTimeString());
+        newText = document.createTextNode( arr[i].valueTime );
         newCell.appendChild(newText);
         newCell = newRow.insertCell(2);
-        newText = document.createTextNode(arr[i].valueData);
+        newText = document.createTextNode( arr[i].valueData );
         newCell.appendChild(newText);
         newCell = newRow.insertCell(3);
-        newText = document.createTextNode(arr[i].fuelData);
+        newText = document.createTextNode( arr[i].fuelData );
         newCell.appendChild(newText);
         newCell = newRow.insertCell(4);
         newText = document.createTextNode("tupe");
         newCell.appendChild(newText);
         number++
-
+        prevSensor[0].innerHTML = "Значение ДУТ: " + arr[i].valueData;
+        prevFuel[0].innerHTML = "Значение топлива: " + arr[i].fuelData ;
         }
 
     //TODO fix prev value sensor
-    prevValue.innerHTML = `Последнее значение ДУТ: ${arr[i].valueData},  Последний залив: ${arr[i].fuelData}, Последний сумма литров: symm`
     valueData.value = "";
     fuelData.value = "";
 }
 
-
+prevHeader[0].onclick = () => {
+    console.log('clf')
+    prevData[0].classList.toggle("disable");
+}
 
 
 // function makeTable ( csv ) {

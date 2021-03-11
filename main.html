@@ -47,23 +47,30 @@
 
         </table>
     </div>
+
     <div class="form">
         <h1 class="form-name">Форма</h1>
-        <label class="prevValue" ></label>
+        <div class="prevDiv">
+            <div class="prevDiv-header"> Последние значения </div>
+            <div class="prevDiv-data">
+                <span class=" prevDiv-sensor" > </span>
+                <span class=" prevDiv-fuel" > </span>
+            </div>
+        </div>
+        <div class="form-input-block">
         <label class="label label-value" for="valueData">ЗНАЧЕНИЕ ДУТ
             <input name="value" type="number" min="1" id="valueData" class="input input-value">
         </label>
-        <br>
-        <hr>
         <label class="label label-fuel" for="fuelData">ЛИТРЫ
             <input name="fuel" type="number" id="fuelData" class="input input-fuel">
         </label>
-        <br>
+        </div>
         <div class="form-btn-block">
             <button class="btn btn-finish">Завершить</button>
             <button class="btn btn-next" onclick="next()">Дальше</button>
         </div>
     </div>
+
     <div class="createFileBlock">
         <h2> Создание файла</h2>
         <label class="label" for="carNumber">Номер машины
