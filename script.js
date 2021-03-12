@@ -9,6 +9,8 @@ let valueData = document.getElementById("valueData"),
     prevFuel = document.getElementsByClassName("prevDiv-fuel"),
     prevTotalFuel = document.getElementsByClassName("prevDiv-totalFuel"),
     prevData = document.getElementsByClassName("prevDiv-data"),
+    header = document.getElementsByClassName("header"),
+    headVisible = document.getElementsByClassName("headVisible"),
     storage = window.localStorage,
     table = null,
     row = {},
@@ -41,15 +43,15 @@ function clearAll(){
     Storage.clear();
 }
 
-//TODO release to switch inputs for push "enter"
 function next(){
     const len = file.arr.length
+    file.arr.map(a => console.log(a.totalFuelData))
     row = {
         number:len+1,
         valueTime:new Date().toLocaleTimeString(),
         valueData:valueData.value,
         fuelData:fuelData.value,
-        totalFuelData: file.arr.length ? file.arr.reduce((a, b) => Number(a) + Number(b.fuelData), 0) : Number(fuelData.value)
+        totalFuelData: file.arr.length ? file.arr.reduce((a, b) => a + Number(b.fuelData), 0) +  Number(fuelData.value) : Number(fuelData.value)
     }
     if (!file.arr){
         file.arr = [row]
@@ -155,8 +157,13 @@ function addRowInTable(arr) {
 }
 
 prevHeader[0].onclick = () => {
-    console.log('clf')
     prevData[0].classList.toggle("disable");
+}
+
+headVisible[0].onclick = () => {
+    header[0].classList.toggle("hide");
+    headVisible[0].classList.toggle("headVisible-down");
+    workspace[0].classList.toggle("upWorkspace");
 }
 
 
