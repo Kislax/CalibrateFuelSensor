@@ -3,7 +3,7 @@ let valueData = document.getElementById("valueData"),
     tbody = document.getElementsByClassName("tbody")[0],
     workspace = document.getElementsByClassName("workspace"),
     createModal = document.getElementsByClassName("createFileBlock"),
-    prevDiv = document.getElementsByClassName("prevDiv"),
+    inputs= document.getElementsByClassName("input"),
     prevHeader = document.getElementsByClassName("prevDiv-header"),
     prevSensor = document.getElementsByClassName("prevDiv-sensor"),
     prevFuel = document.getElementsByClassName("prevDiv-fuel"),
@@ -11,6 +11,7 @@ let valueData = document.getElementById("valueData"),
     prevData = document.getElementsByClassName("prevDiv-data"),
     header = document.getElementsByClassName("header"),
     headVisible = document.getElementsByClassName("headVisible"),
+    btnNext = document.getElementsByClassName("btn-next"),
     storage = window.localStorage,
     table = null,
     row = {},
@@ -19,6 +20,9 @@ file = {
     csv:"data:text/csv;charset=utf-8,",
     arr:[]
 };
+
+
+
 
 
 //TODO export csv file
@@ -44,42 +48,53 @@ function clearAll(){
 }
 
 function next(){
-    const len = file.arr.length
-    file.arr.map(a => console.log(a.totalFuelData))
-    row = {
-        number:len+1,
-        valueTime:new Date().toLocaleTimeString(),
-        valueData:valueData.value,
-        fuelData:fuelData.value,
-        totalFuelData: file.arr.length ? file.arr.reduce((a, b) => a + Number(b.fuelData), 0) +  Number(fuelData.value) : Number(fuelData.value)
-    }
-    if (!file.arr){
-        file.arr = [row]
-    }else{
-        file.arr = [...file.arr, row]
-    }
+    let lastRow = file.arr[file.arr.length-1]
 
-    storage.setItem(file.name, JSON.stringify(file.arr))
+ if ((lastRow) && (valueData.value === "" || fuelData.value === "" || valueData.value === lastRow.valueData && fuelData.value === lastRow.fuelData  )) {
+    if (confirm("Вы уверены, что значения должны быть пустыми?")) {
+        valueData.value = "0"
+        fuelData.value = "0"
+    }
+ }else {
 
-    valueData.value = "";
-    fuelData.value = "";
-    addRowInTable(file.arr);
+     if ((lastRow) &&  (lastRow.fuelData >= valueData.value || lastRow.fuelData >= fuelData.value)) {
+         alert("Значения не могут быть меньше чем предыдущие")
+     } else {
+
+
+         const len = file.arr.length
+         file.arr.map(a => console.log(a.totalFuelData))
+         row = {
+             number: len + 1,
+             valueTime: new Date().toLocaleTimeString(),
+             valueData: valueData.value,
+             fuelData: fuelData.value,
+             totalFuelData: file.arr.length ? file.arr.reduce((a, b) => a + Number(b.fuelData), 0) + Number(fuelData.value) : Number(fuelData.value)
+         }
+         if (!file.arr) {
+             file.arr = [row]
+         } else {
+             file.arr = [...file.arr, row]
+         }
+
+         storage.setItem(file.name, JSON.stringify(file.arr))
+
+         valueData.value = "";
+         fuelData.value = "";
+         valueData.focus();
+         addRowInTable(file.arr);
+     }
+ }
 }
 
+// OPEN/CLOSED popup
 
 function openCreateModal(){
-    workspace[0].classList.toggle("dimmer");
     createModal[0].classList.toggle("active");
 }
 
 function closeCreateModal(){
-    workspace[0].classList.toggle("dimmer");
     createModal[0].classList.toggle("active");
-}
-
-//TODO create new obj to localStorage, used data from input
-function createFile(){
-
 }
 
 //TODO open view list last files from localStorage
@@ -92,9 +107,16 @@ function closedModalLastFile(){
 
 }
 
+
+//TODO create new obj to localStorage, used data from input
+function createFile(){
+
+}
+
+
+
 //TODO open last file from list
 function openLastFile(){
-
         file.arr = JSON.parse(storage.getItem("tar"))
         addRowInTable(file.arr)
 }
@@ -197,3 +219,18 @@ headVisible[0].onclick = () => {
 //     valueData.value = "";
 //     fuelData.value = "";
 //
+
+
+for (let i = 0 ; i < inputs.length; i++) {
+    inputs[i].addEventListener("keypress", function (e) {
+        if (e.which === 13) {
+            e.preventDefault();
+            let nextInput = document.querySelectorAll('[tabIndex="' + (this.tabIndex + 1) + '"]');
+            if ((nextInput.length === 0) || (document.activeElement === btnNext[0])) {
+                nextInput = document.querySelectorAll('[tabIndex="1"]');
+            }
+            nextInput[0].focus();
+
+        }
+    })
+}

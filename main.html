@@ -62,34 +62,35 @@
         </div>
         <div class="form-input-block">
         <label class="label label-value" for="valueData">ЗНАЧЕНИЕ ДУТ
-            <input name="value" type="number" min="1" id="valueData" class="input input-value">
+            <input name="value" type="number" min="1" id="valueData" class="input input-value" tabindex="1">
         </label>
         <label class="label label-fuel" for="fuelData">ЛИТРЫ
-            <input name="fuel" type="number" id="fuelData" class="input input-fuel">
+            <input name="fuel" type="number" id="fuelData" class="input input-fuel" tabindex="2">
         </label>
         </div>
         <div class="form-btn-block">
             <button class="btn btn-finish">Завершить</button>
-            <button class="btn btn-next" onclick="next()">Дальше</button>
+            <button class="btn btn-next" onclick="next()" tabindex="3">Дальше</button>
         </div>
     </div>
 
     <div class="createFileBlock">
-        <h2> Создание файла</h2>
-        <label class="label" for="carNumber">Номер машины
-            <input name="value" type="text" placeholder="X111XX" id="carNumber" class="input">
-        </label>
-        <br>
-        <hr>
-        <label class="label" for="FuelTank">Бак
-            <input name="FuelTank" type="number" id="FuelTank" value="1" class="input">
-        </label>
-        <label class="label" for="StartSensorValue">Начальное значение ДУТ
-            <input name="StartSensorValue" type="number" id="StartSensorValue" value="1" class="input">
-        </label>
-        <br>
-        <button class="btn btn-finish" onclick="closeCreateModal()">Выйти</button>
-        <button class="btn btn-next" onclick="">Создать</button>
+        <div class="form-name"> Создание файла</div>
+        <div class="createFileBlock-input">
+            <label class="label" for="carNumber">Номер машины
+                <input name="value" type="text" placeholder="X111XX" id="carNumber" class="input">
+            </label>
+            <label class="label" for="FuelTank">Бак
+                <input name="FuelTank" type="number" id="FuelTank" value="1" class="input">
+            </label>
+            <label class="label" for="StartSensorValue">Начальное значение ДУТ
+                <input name="StartSensorValue" type="number" id="StartSensorValue" value="1" class="input">
+            </label>
+        </div>
+        <div class="form-btn-block">
+            <button class="btn btn-finish" onclick="closeCreateModal()">Выйти</button>
+            <button class="btn btn-next" onclick="">Создать</button>
+        </div>
     </div>
 </div>
 
