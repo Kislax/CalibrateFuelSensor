@@ -216,7 +216,7 @@ header.hide{
     background: #F7F7F7;
 }
 
-.createFileBlock{
+.popup {
     display: none;
     border: 2px solid gray;
     border-radius: 1vh;

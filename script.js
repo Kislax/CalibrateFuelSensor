@@ -3,6 +3,7 @@ let valueData = document.getElementById("valueData"),
     tbody = document.getElementsByClassName("tbody")[0],
     workspace = document.getElementsByClassName("workspace"),
     createModal = document.getElementsByClassName("createFileBlock"),
+    lastBlock = document.getElementsByClassName("lastFileBlock"),
     inputs= document.getElementsByClassName("input"),
     prevHeader = document.getElementsByClassName("prevDiv-header"),
     prevSensor = document.getElementsByClassName("prevDiv-sensor"),
@@ -12,14 +13,20 @@ let valueData = document.getElementById("valueData"),
     header = document.getElementsByClassName("header"),
     headVisible = document.getElementsByClassName("headVisible"),
     btnNext = document.getElementsByClassName("btn-next"),
+    listLastFiles = document.getElementsByClassName("listLastFiles"),
+    carNumber = document.getElementById("carNumber"),
+    startSensorValue = document.getElementById("startSensorValue"),
+    fuelTank = document.getElementById("fuelTank"),
     storage = window.localStorage,
     table = null,
     row = {},
-file = {
-    name:"tar",
-    csv:"data:text/csv;charset=utf-8,",
-    arr:[]
-};
+    fileList = [],
+    file={},
+    file32 = {
+        name:"tar",
+        csv:"data:text/csv;charset=utf-8,",
+        arr:[]
+    };
 
 
 
@@ -48,8 +55,18 @@ function clearAll(){
 }
 
 function next(){
-    let lastRow = file.arr[file.arr.length-1]
+    fileList =  JSON.parse(storage.getItem("fileList"))
+    if (!fileList) {
+        alert("Пожалуйста создайте файл")
+    }
 
+    file = fileList[fileList.length-1]
+    if (file.table){
+        let lastRow = file.table[file.table.length-1]
+    }
+    let lastRow="0"
+
+ // TODO FIX CHECK VALUE FOR NEXT
  if ((lastRow) && (valueData.value === "" || fuelData.value === "" || valueData.value === lastRow.valueData && fuelData.value === lastRow.fuelData  )) {
     if (confirm("Вы уверены, что значения должны быть пустыми?")) {
         valueData.value = "0"
@@ -60,29 +77,30 @@ function next(){
      if ((lastRow) &&  (lastRow.fuelData >= valueData.value || lastRow.fuelData >= fuelData.value)) {
          alert("Значения не могут быть меньше чем предыдущие")
      } else {
-
-
-         const len = file.arr.length
-         file.arr.map(a => console.log(a.totalFuelData))
+         const len = file.table.length
          row = {
              number: len + 1,
              valueTime: new Date().toLocaleTimeString(),
              valueData: valueData.value,
              fuelData: fuelData.value,
-             totalFuelData: file.arr.length ? file.arr.reduce((a, b) => a + Number(b.fuelData), 0) + Number(fuelData.value) : Number(fuelData.value)
+             totalFuelData: file.table.length ? file.table.reduce((a, b) => a + Number(b.fuelData), 0) + Number(fuelData.value) : Number(fuelData.value)
          }
-         if (!file.arr) {
-             file.arr = [row]
+         if (!file.table) {
+             file.table = [row]
          } else {
-             file.arr = [...file.arr, row]
+             file.table = [...file.table, row]
          }
 
-         storage.setItem(file.name, JSON.stringify(file.arr))
+         //TODO FIX this logic
+
+         // перезапись в массив файлов не происходит, выполняется только добавление.
+
+         storage.setItem("fileList", JSON.stringify(fileList))
 
          valueData.value = "";
          fuelData.value = "";
          valueData.focus();
-         addRowInTable(file.arr);
+         addRowInTable(file.table);
      }
  }
 }
@@ -97,28 +115,69 @@ function closeCreateModal(){
     createModal[0].classList.toggle("active");
 }
 
-//TODO open view list last files from localStorage
+
 function openModalLastFile(){
+    fileList = JSON.parse(storage.getItem("fileList"))
 
+    lastBlock[0].classList.toggle("active");
+    listLastFiles.innerHTML="";
+
+    for(let i = 0; i < fileList.length; i++){
+        let newRow = listLastFiles.insertRow(i)
+        let newCell = newRow.insertCell(0);
+        let newText = document.createTextNode( i + 1 );
+        newCell.appendChild(newText);
+        newCell = newRow.insertCell(1);
+        newText = document.createTextNode( fileList[i].name );
+        newCell.appendChild(newText);
+        newCell = newRow.insertCell(2);
+        newText = document.createTextNode( fileList[i].createDate );
+    }
 }
 
-//TODO closed view list last files from localStorage
+
 function closedModalLastFile(){
-
+    lastBlock[0].classList.toggle("active");
 }
 
 
-//TODO create new obj to localStorage, used data from input
-function createFile(){
-
+//TODO create new file to localStorage, used data from input
+function createFile() {
+    if ( carNumber.value === "" || fuelTank.value === "" || startSensorValue.value === "" ) {
+        if (confirm("Вы уверены, что значения должны быть пустыми?")) {
+            carNumber.value = "X999XX"
+            fuelTank.value = "1"
+            startSensorValue.value = "0"
+        }
+    }
+        let newFileName =  carNumber.value + "_Сетевой№" + fuelTank.value + "_Исполнитель" + new Date().toLocaleDateString()
+        if(storage.getItem("fileList")) {
+            fileList = JSON.parse(storage.getItem("fileList"))
+        }
+        if  (!!fileList.filter((a)=>a.name === newFileName)){
+            alert("Такое имя уже существует, мы добавили к названию время")
+            newFileName = new Date().toLocaleDateString() + newFileName
+        }
+            let  file={
+                name: newFileName,
+                table: [],
+                data: new Date().toLocaleDateString()
+            }
+        if (!fileList){
+            fileList=[file]
+        }else {
+            fileList = [...fileList, file]
+        }
+        storage.setItem("fileList", JSON.stringify(fileList))
+        createModal[0].classList.remove("active");
 }
 
 
 
 //TODO open last file from list
-function openLastFile(){
-        file.arr = JSON.parse(storage.getItem("tar"))
-        addRowInTable(file.arr)
+function openLastFile(name){
+        file.table = JSON.parse(storage.getItem(name))
+        addRowInTable(file.table)
 }
 
 //TODO edit rows value

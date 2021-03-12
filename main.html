@@ -14,7 +14,7 @@
 
     <nav class="navigate">
         <div class="file">
-            <button class="btn btn-open" onclick="openLastFile()">Открыть</button>
+            <button class="btn btn-open" onclick="openModalLastFile()">Открыть</button>
             <button class="btn btn-create" onclick="openCreateModal()">Создать</button>
             <button class="btn btn-create" onclick="save()">Сохранить</button>
             <button class="btn btn-create" onclick="clearAll()">Очистить все</button>
@@ -74,22 +74,42 @@
         </div>
     </div>
 
-    <div class="createFileBlock">
+    <div class="popup createFileBlock">
         <div class="form-name"> Создание файла</div>
         <div class="createFileBlock-input">
             <label class="label" for="carNumber">Номер машины
-                <input name="value" type="text" placeholder="X111XX" id="carNumber" class="input">
+                <input name="value" type="text" placeholder="X111XX" id="carNumber" class="input carNumber">
             </label>
-            <label class="label" for="FuelTank">Бак
-                <input name="FuelTank" type="number" id="FuelTank" value="1" class="input">
+            <label class="label" for="fuelTank">Бак
+                <input name="FuelTank" type="number" id="fuelTank" value="1" class="input fuelTank">
             </label>
-            <label class="label" for="StartSensorValue">Начальное значение ДУТ
-                <input name="StartSensorValue" type="number" id="StartSensorValue" value="1" class="input">
+            <label class="label" for="startSensorValue"> Начальное значение ДУТ
+                <input name="StartSensorValue" type="number" id="startSensorValue" value="1" class="input startSensorValue">
             </label>
         </div>
         <div class="form-btn-block">
             <button class="btn btn-finish" onclick="closeCreateModal()">Выйти</button>
-            <button class="btn btn-next" onclick="">Создать</button>
+            <button class="btn btn-next" onclick="createFile()">Создать</button>
+        </div>
+    </div>
+    <div class="popup lastFileBlock">
+        <div class="form-name"> Загрузка сохраненных файлов</div>
+        <table >
+            <thead>
+            <tr>
+                <td>№</td>
+                <td>Название</td>
+                <td>Время создания </td>
+            </tr>
+            </thead>
+
+            <tbody class="listLastFiles">
+
+            </tbody>
+
+        </table>
+        <div class="form-btn-block">
+            <button class="btn btn-finish" onclick="closedModalLastFile()">Выйти</button>
         </div>
     </div>
 </div>
