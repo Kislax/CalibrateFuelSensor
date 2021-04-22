@@ -85,7 +85,7 @@ header.hide{
 .btn{
     font-size: 1.5vh;
     padding: 1vh;
-    margin: 0.5vh;
+    margin: 0.2vh;
     border-radius: 1vh;
     background: #efefef;
     border: solid 2px #efefef;
@@ -130,16 +130,12 @@ header.hide{
 .btn-finish{
     background: #CF1F28;
     color: white;
-    border: 0;
     font-size: 3vh;
 }
 .btn-next{
     background: #05a665;
     color: white;
-    border: 0;
-    width: 50%;
     padding-top: 1vh;
-    height: 100px;
     font-size: 6vh;
 }
 .headVisible{
@@ -232,10 +228,9 @@ header.hide{
 
 .prevDiv{
     width: 100%;
-    height: 3vh;
+    height: 4vh;
     text-align: center;
     font-size: 2vh;
-    margin-bottom: 5vh;
 
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
@@ -244,41 +239,41 @@ header.hide{
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently
                                   not supported by any browser */
-
-
 }
 
-.prevDiv-header{
-    display: block;
-    background : #f7f7f7;
+.btn-block{
+    display: flex;
+    justify-content: space-around;
+    /* flex-direction: row; */
+}
+/* .prevDiv-header{
+     background : #f7f7f7;
     box-shadow: 0.05vh 0.05vh 0.3vh 0.1vh slategray;
     border-radius: 2.5vh;
-    padding: 0.7vh;
-    width: 40%;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 1vh;
+    margin: 0.2vh;
     border: solid 1px #efefef;
-}
+} */
 
-.prevDiv-header:hover {
-    cursor: pointer;
-    box-shadow: 0.05vh 0.1vh 0.5vh 0.1vh slategray;
-}
+/* .prevDiv-header:hover {
+     cursor: pointer;
+    box-shadow: 0.05vh 0.1vh 0.5vh 0.1vh slategray; 
+} */
 
 .prevDiv-data {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    font-size: 3vh;
+    font-size: 2vh;
     margin-bottom: 2vh;
-    margin-top: 2vh;
+    margin-top: 1vh;
     cursor: auto;
     font-weight: bolder;
 }
 
 .form-input-block{
     margin-top: 4vh;
-    margin-bottom: 2vh;
+    margin-bottom: 1vh;
 }
 
 .disable{
@@ -290,4 +285,11 @@ header.hide{
 
 .createFileBlock-input{
  margin: 2vh;
+}
+
+.btn-header{
+    padding-top:2px;
+    padding-bottom: 1px;
+    padding-left:7px;
+    padding-right: 7px;
 }

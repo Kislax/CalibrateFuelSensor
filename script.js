@@ -17,6 +17,8 @@ let valueData = document.getElementById("valueData"),
     carNumber = document.getElementById("carNumber"),
     startSensorValue = document.getElementById("startSensorValue"),
     fuelTank = document.getElementById("fuelTank"),
+    btnResultTable = document.getElementsByClassName("prevDiv-resultTable"),
+    tableBlock = document.getElementsByClassName("table-block"),
     storage = window.localStorage,
     table = null,
     row = {},
@@ -45,7 +47,7 @@ function save(){
     downloadLink.remove();
 }
 
-//TODO convert arrows to csv file
+// convert arrows to csv file
 function convertToCSV(arr){
 
 }
@@ -237,6 +239,24 @@ function addRowInTable(arr) {
     fuelData.value = "";
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+// * Inteface
+
+btnResultTable[0].onclick = () => {
+    tableBlock[0].classList.toggle("disable");
+}
+
 prevHeader[0].onclick = () => {
     prevData[0].classList.toggle("disable");
 }
@@ -278,6 +298,10 @@ headVisible[0].onclick = () => {
 //     valueData.value = "";
 //     fuelData.value = "";
 //
+
+
+
+
 
 
 for (let i = 0 ; i < inputs.length; i++) {
